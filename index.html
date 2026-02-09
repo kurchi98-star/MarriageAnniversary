@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy Anniversary ❤️</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: radial-gradient(circle at top, #1a1a2e, #0f0f1a);
+    overflow: hidden;
+    color: white;
+  }
+
+  .card {
+    text-align: center;
+    background: rgba(255,255,255,0.96);
+    color: #333;
+    padding: 40px;
+    border-radius: 22px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    max-width: 90%;
+    animation: fadeIn 1.5s ease;
+    position: relative;
+    z-index: 3;
+  }
+
+  h1 { line-height: 1.4; }
+
+  button {
+    padding: 12px 26px;
+    font-size: 16px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    margin: 10px;
+    transition: transform 0.2s;
+    position: relative;
+  }
+
+  button:hover { transform: scale(1.06); }
+
+  #yes {
+    background: #ff4d6d;
+    color: white;
+    box-shadow: 0 8px 20px rgba(255,77,109,0.4);
+  }
+
+  #no {
+    background: #eee;
+    position: absolute;
+  }
+
+  .hidden { display: none; }
+
+  .final-message {
+    font-size: 22px;
+    line-height: 1.6;
+    margin-bottom: 18px;
+    animation: fadeIn 2s ease;
+  }
+
+  .ring {
+    font-size: 60px;
+    margin: 10px 0;
+    animation: ringPop 2s ease forwards;
+  }
+
+  @keyframes ringPop {
+    0% { transform: scale(0); opacity: 0; }
+    60% { transform: scale(1.3); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+
+  .subscription {
+    font-size: 20px;
+    margin-top: 15px;
+    opacity: 0;
+    animation: fadeIn 2s ease forwards;
+    animation-delay: 3s;
+    color: #ff4d6d;
+    font-weight: 600;
+  }
+
+  /* Slideshow */
+  #slideshow {
+    margin: 25px auto 0;
+    width: 320px;
+    height: 320px;
+    border-radius: 22px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  }
+
+  #slideshow img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 2.5s ease-in-out;
+  }
+
+  #slideshow img.active { opacity: 1; }
+
+  /* Falling hearts */
+  .heart {
+    position: absolute;
+    top: -50px;
+    font-size: 24px;
+    animation: fall linear infinite;
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  @keyframes fall {
+    to { transform: translateY(110vh); }
+  }
+
+  /* Fireworks */
+  .firework {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: gold;
+    border-radius: 50%;
+    animation: explode 1.5s ease-out forwards;
+    z-index: 2;
+  }
+
+  @keyframes explode {
+    from { transform: scale(1); opacity: 1; }
+    to { transform: scale(25); opacity: 0; }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- QUESTION -->
+<div class="card" id="question">
+  <h1>
+    Will you marry me again on 12/02/2026? 💍<br>
+    <small>Press YES to renew marriage subscription 💖</small>
+  </h1>
+  <button id="yes">YES ❤️</button>
+  <button id="no">NO 🙈</button>
+</div>
+
+<!-- RESULT -->
+<div class="card hidden" id="result">
+  <div class="final-message">
+    You are my entire universe. 🌍<br><br>
+    Happy anniversary, Husband! ♥️<br><br>
+    <span style="font-size:18px;">
+      P.S. I need a proposal from you soon, so that you don’t get to say
+      “I never even proposed you” ever again. 😒😏
+    </span>
+  </div>
+
+  <div class="ring">💍</div>
+
+  <div class="subscription">
+    Marriage subscription renewed till eternity ♾️
+  </div>
+
+  <div id="slideshow">
+    <img src="photo1.jpg" class="active">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    <img src="photo4.jpg">
+    <img src="photo5.jpg">
+    <img src="photo6.jpg">
+    <img src="photo7.jpg">
+    <img src="photo8.jpg">
+    <img src="photo9.jpg">
+    <img src="photo10.jpg">
+  </div>
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="Ebhabe_golpo_hok.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const noBtn = document.getElementById("no");
+  const yesBtn = document.getElementById("yes");
+  const question = document.getElementById("question");
+  const result = document.getElementById("result");
+  const music = document.getElementById("music");
+
+  // NO button runs away
+  noBtn.addEventListener("mouseover", () => {
+    noBtn.style.left = Math.random() * (window.innerWidth - 120) + "px";
+    noBtn.style.top = Math.random() * (window.innerHeight - 60) + "px";
+  });
+
+  // YES clicked
+  yesBtn.addEventListener("click", () => {
+    question.classList.add("hidden");
+    result.classList.remove("hidden");
+    music.play();
+
+    // Falling hearts
+    for (let i = 0; i < 35; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (Math.random() * 20 + 18) + "px";
+      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+      heart.style.animationDelay = Math.random() * 5 + "s";
+      document.body.appendChild(heart);
+    }
+
+    // Fireworks
+    for (let i = 0; i < 12; i++) {
+      const fw = document.createElement("div");
+      fw.className = "firework";
+      fw.style.left = Math.random() * 100 + "vw";
+      fw.style.top = Math.random() * 100 + "vh";
+      document.body.appendChild(fw);
+      setTimeout(() => fw.remove(), 1500);
+    }
+  });
+
+  // Slideshow logic
+  const slides = document.querySelectorAll("#slideshow img");
+  let index = 0;
+  setInterval(() => {
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+  }, 4000);
+</script>
+
+</body>
+</html>
