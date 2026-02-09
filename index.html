@@ -2,252 +2,246 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Happy Anniversary ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Forever Us 💖</title>
 
 <style>
-  body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: radial-gradient(circle at top, #1a1a2e, #0f0f1a);
-    overflow: hidden;
-    color: white;
-  }
+* {
+  box-sizing: border-box;
+}
 
-  .card {
-    text-align: center;
-    background: rgba(255,255,255,0.96);
-    color: #333;
-    padding: 40px;
-    border-radius: 22px;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
-    max-width: 90%;
-    animation: fadeIn 1.5s ease;
-    position: relative;
-    z-index: 3;
-  }
+body {
+  margin: 0;
+  min-height: 100svh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: radial-gradient(circle at top, #1a1a2e, #0f0f1a);
+  font-family: "Segoe UI", Arial, sans-serif;
+  overflow-y: auto;
+  color: #fff;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
 
-  h1 { line-height: 1.4; }
+.container {
+  width: 100%;
+  max-width: 420px;
+  padding: 30px 20px 50px;
+  text-align: center;
+}
 
-  button {
-    padding: 12px 26px;
-    font-size: 16px;
-    border: none;
-    border-radius: 14px;
-    cursor: pointer;
-    margin: 10px;
-    transition: transform 0.2s;
-    position: relative;
-  }
+/* Falling hearts */
+.heart {
+  position: fixed;
+  top: -20px;
+  color: rgba(255, 105, 180, 0.75);
+  font-size: 18px;
+  animation: fall linear infinite;
+  pointer-events: none;
+}
 
-  button:hover { transform: scale(1.06); }
-
-  #yes {
-    background: #ff4d6d;
-    color: white;
-    box-shadow: 0 8px 20px rgba(255,77,109,0.4);
-  }
-
-  #no {
-    background: #eee;
-    position: absolute;
-  }
-
-  .hidden { display: none; }
-
-  .final-message {
-    font-size: 22px;
-    line-height: 1.6;
-    margin-bottom: 18px;
-    animation: fadeIn 2s ease;
-  }
-
-  .ring {
-    font-size: 60px;
-    margin: 10px 0;
-    animation: ringPop 2s ease forwards;
-  }
-
-  @keyframes ringPop {
-    0% { transform: scale(0); opacity: 0; }
-    60% { transform: scale(1.3); opacity: 1; }
-    100% { transform: scale(1); }
-  }
-
-  .subscription {
-    font-size: 20px;
-    margin-top: 15px;
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
     opacity: 0;
-    animation: fadeIn 2s ease forwards;
-    animation-delay: 3s;
-    color: #ff4d6d;
-    font-weight: 600;
   }
+}
 
-  /* Slideshow */
-  #slideshow {
-    margin: 25px auto 0;
-    width: 320px;
-    height: 320px;
-    border-radius: 22px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-  }
+/* Cards */
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border-radius: 24px;
+  padding: 26px 20px 34px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  margin-bottom: 30px;
+}
 
-  #slideshow img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 2.5s ease-in-out;
-  }
+/* Text */
+h1 {
+  font-size: 1.6rem;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
 
-  #slideshow img.active { opacity: 1; }
+.subtitle {
+  font-size: 1.05rem;
+  margin-bottom: 26px;
+  opacity: 0.9;
+}
 
-  /* Falling hearts */
-  .heart {
-    position: absolute;
-    top: -50px;
-    font-size: 24px;
-    animation: fall linear infinite;
-    opacity: 0.9;
-    pointer-events: none;
-    z-index: 1;
-  }
+/* Buttons */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
 
-  @keyframes fall {
-    to { transform: translateY(110vh); }
-  }
+button {
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+}
 
-  /* Fireworks */
-  .firework {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: gold;
-    border-radius: 50%;
-    animation: explode 1.5s ease-out forwards;
-    z-index: 2;
-  }
+#yesBtn {
+  background: linear-gradient(135deg, #ff4d6d, #ff85a1);
+  color: white;
+}
 
-  @keyframes explode {
-    from { transform: scale(1); opacity: 1; }
-    to { transform: scale(25); opacity: 0; }
-  }
+#noBtn {
+  background: #444;
+  color: white;
+  position: relative;
+}
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+/* Result */
+#result {
+  display: none;
+}
+
+.message {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.highlight {
+  color: #ff7aa8;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 16px;
+}
+
+/* Slideshow */
+#slideshow {
+  width: 80vw;
+  max-width: 320px;
+  height: 52vh;
+  max-height: 380px;
+  margin: 28px auto 0;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.45);
+}
+
+#slideshow img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+
+#slideshow img.active {
+  display: block;
+}
 </style>
 </head>
 
 <body>
 
-<!-- QUESTION -->
-<div class="card" id="question">
-  <h1>
-    Will you marry me again on 12/02/2026? 💍<br>
-    <small>Press YES to renew marriage subscription 💖</small>
-  </h1>
-  <button id="yes">YES ❤️</button>
-  <button id="no">NO 🙈</button>
-</div>
+<div class="container">
 
-<!-- RESULT -->
-<div class="card hidden" id="result">
-  <div class="final-message">
-    You are my entire universe. 🌍<br><br>
-    Happy anniversary, Husband! ♥️<br><br>
-    <span style="font-size:18px;">
+  <!-- Question -->
+  <div class="card" id="question">
+    <h1>Will you marry me again on<br>12/02/2026? 💍</h1>
+    <div class="subtitle">
+      Press <b>YES</b> to renew marriage subscription 💖
+    </div>
+
+    <div class="buttons">
+      <button id="yesBtn">YES 💕</button>
+      <button id="noBtn">NO 😏</button>
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div class="card" id="result">
+    <div class="message">
+      You are my entire universe. 🌍
+    </div>
+
+    <div class="message">
+      Happy anniversary, Husband! ♥️
+    </div>
+
+    <div class="message">
       P.S. I need a proposal from you soon, so that you don’t get to say
       “I never even proposed you” ever again. 😒😏
-    </span>
+    </div>
+
+    <div class="highlight">
+      Marriage subscription renewed till eternity ♾️
+    </div>
+
+    <!-- Slideshow -->
+    <div id="slideshow">
+      <img src="images/photo1.jpg" class="active">
+      <img src="images/photo2.jpg">
+      <img src="images/photo3.jpg">
+      <img src="images/photo4.jpg">
+      <img src="images/photo5.jpg">
+      <img src="images/photo6.jpg">
+      <img src="images/photo7.jpg">
+      <img src="images/photo8.jpg">
+      <img src="images/photo9.jpg">
+      <img src="images/photo10.jpg">
+    </div>
   </div>
 
-  <div class="ring">💍</div>
-
-  <div class="subscription">
-    Marriage subscription renewed till eternity ♾️
-  </div>
-
-  <div id="slideshow">
-    <img src="photo1.jpg.jpg" class="active">
-    <img src="photo2.jpg.jpg">
-    <img src="photo3.jpg.jpg">
-    <img src="photo4.jpg.jpg">
-    <img src="photo5.jpg.jpg">
-    <img src="photo6.jpg.jpg">
-    <img src="photo7.jpg.jpg">
-    <img src="photo8.jpg.jpg">
-    <img src="photo9.jpg.jpg">
-    <img src="photo10.jpg.jpg">
-  </div>
 </div>
 
-<!-- MUSIC -->
-<audio id="music" loop>
-  <source src="Ebhabe_golpo_hok.mp3" type="audio/mpeg">
+<!-- Music -->
+<audio id="bgMusic" loop>
+  <source src="music/Ebhabe_golpo_hok.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-  const noBtn = document.getElementById("no");
-  const yesBtn = document.getElementById("yes");
-  const question = document.getElementById("question");
-  const result = document.getElementById("result");
-  const music = document.getElementById("music");
+/* Hearts */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = 3 + Math.random() * 4 + "s";
+  heart.style.fontSize = 14 + Math.random() * 18 + "px";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 7000);
+}
+setInterval(createHeart, 350);
 
-  // NO button runs away
-  noBtn.addEventListener("mouseover", () => {
-    noBtn.style.left = Math.random() * (window.innerWidth - 120) + "px";
-    noBtn.style.top = Math.random() * (window.innerHeight - 60) + "px";
-  });
+/* Buttons */
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const question = document.getElementById("question");
+const result = document.getElementById("result");
+const music = document.getElementById("bgMusic");
 
-  // YES clicked
-  yesBtn.addEventListener("click", () => {
-    question.classList.add("hidden");
-    result.classList.remove("hidden");
-    music.play();
+yesBtn.addEventListener("click", () => {
+  question.style.display = "none";
+  result.style.display = "block";
+  music.play();
+});
 
-    // Falling hearts
-    for (let i = 0; i < 35; i++) {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = (Math.random() * 20 + 18) + "px";
-      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
-      heart.style.animationDelay = Math.random() * 5 + "s";
-      document.body.appendChild(heart);
-    }
+noBtn.addEventListener("mouseover", () => {
+  const x = Math.random() * 200 - 100;
+  const y = Math.random() * 200 - 100;
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
 
-    // Fireworks
-    for (let i = 0; i < 12; i++) {
-      const fw = document.createElement("div");
-      fw.className = "firework";
-      fw.style.left = Math.random() * 100 + "vw";
-      fw.style.top = Math.random() * 100 + "vh";
-      document.body.appendChild(fw);
-      setTimeout(() => fw.remove(), 1500);
-    }
-  });
+/* Slideshow */
+const slides = document.querySelectorAll("#slideshow img");
+let index = 0;
 
-  // Slideshow logic
-  const slides = document.querySelectorAll("#slideshow img");
-  let index = 0;
-  setInterval(() => {
-    slides[index].classList.remove("active");
-    index = (index + 1) % slides.length;
-    slides[index].classList.add("active");
-  }, 4000);
+setInterval(() => {
+  slides[index].classList.remove("active");
+  index = (index + 1) % slides.length;
+  slides[index].classList.add("active");
+}, 3000);
 </script>
 
 </body>
 </html>
-
